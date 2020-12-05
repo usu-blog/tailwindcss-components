@@ -1,0 +1,68 @@
+import {
+  Meta,
+  ArgsTable,
+  Source,
+  Story,
+  Canvas,
+} from '@storybook/addon-docs/blocks'
+import CheckBox from './CheckBox.vue'
+import dedent from 'ts-dedent'
+
+<Meta
+  title="Components/CheckBox"
+  component={CheckBox}
+  argTypes={{
+    slotText: {
+      defaultValue: 'ラベル',
+      control: { type: 'text' },
+    },
+    color: {
+      control: {
+        type: 'select',
+        options: [undefined, 'primary', 'success', 'warning', 'danger'],
+      },
+    },
+  }}
+/>
+
+# CheckBox
+
+<ArgsTable of={CheckBox} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { CheckBox },
+  template: '<CheckBox :color="color">{{slotText}}</CheckBox>',
+})
+
+## Components
+
+<Canvas>
+  <Story name="default" height="100px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="primary" height="100px" args={{ color: 'primary' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="success" height="100px" args={{ color: 'success' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="warning" height="100px" args={{ color: 'warning' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="danger" height="100px" args={{ color: 'danger' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

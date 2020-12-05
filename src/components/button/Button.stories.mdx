@@ -1,0 +1,97 @@
+import {
+  Meta,
+  ArgsTable,
+  Source,
+  Story,
+  Canvas,
+} from '@storybook/addon-docs/blocks'
+import Button from './Button.vue'
+import dedent from 'ts-dedent'
+
+<Meta
+  title="Components/Button"
+  component={Button}
+  argTypes={{
+    slotText: {
+      defaultValue: 'ボタン',
+      control: { type: 'text' },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: [undefined, 'small', 'large'],
+      },
+    },
+    color: {
+      control: {
+        type: 'select',
+        options: [undefined, 'primary', 'success', 'warning', 'danger'],
+      },
+    },
+    type: {
+      control: {
+        type: 'select',
+        options: ['fill', 'outlined', 'text'],
+      },
+    },
+  }}
+/>
+
+# Button
+
+<ArgsTable of={Button} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Button },
+  template:
+    '<Button :size="size" :color="color" :type="type" :full="full" :disabled="disabled">{{slotText}}</Button>',
+})
+
+## Components
+
+<Canvas>
+  <Story name="default" height="100px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="primary" height="100px" args={{ color: 'primary' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="success" height="100px" args={{ color: 'success' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="warning" height="100px" args={{ color: 'warning' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="danger" height="100px" args={{ color: 'danger' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="outlined"
+    height="100px"
+    args={{ color: 'primary', type: 'outlined' }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="text" height="100px" args={{ color: 'primary', type: 'text' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
